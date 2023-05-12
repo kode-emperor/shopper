@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  frontend-ruby:
+    container_name: localstack-ruby
+    image: ./.docker/Dockerfile
+    profiles: ['dev', 'production' ]
+    networks:
+      - lstack-ruby
+    depends_on:
+      - localstack
+  localstack:
+    container_name: localstack-aws
+    image: localstack 
+    profiles: [ 'dev']
+    networks:
+      - lstack-ruby 
+    
+networks:
+  lstack-ruby: {}
